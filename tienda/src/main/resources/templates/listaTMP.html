@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header::head">
+<meta charset="UTF-8">
+<title>Autos Disponibles</title>
+</head>
+
+<body class="animsition"
+	th:style="'background:url(' + @{/imgs/resultado.jpg} + ');background-size:cover;'">
+	<div class="container">
+
+		<!-- page content -->
+		<br>
+		<!-- 
+		<div class="form-group" align="center">
+
+			<div class="col-md-8 col-sm-10 col-xs-12">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="col-md-8">
+                                	<br><br>
+                                <div class="card">
+                                    <img class="card-img-top" th:src="@{/imgs/keys.jpeg}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-3">Tu selección se ha realizado</h4>
+                                        <p class="card-text">Te contactaremos para finalizar la compra y realizar el pago.<br>
+                                        ¡Si tomas no manejes!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		-->
+		<div class="form-group" align="center">
+			<div class="col-lg-6">
+				<div class="card">
+					<div class="card-header">¡Continuemos, estas a un paso!</div>
+					<div class="card-body">
+						<div class="card-title">
+							<h3 class="text-center title-2">Facturación</h3>
+						</div>
+						<hr>
+						<form  th:action="@{/comprar2}" th:object="${tarjeta}" method="post" novalidate="novalidate">
+<!-- 							<input type="hidden" th:value="${personid}"/> -->
+							<input class="form-control"
+					           type="hidden"
+					           th:value="${personid}" id="idperson" name="idperson" />
+							<div class="form-group">
+								<label for="cc-payment" class="control-label mb-1">Monto total</label> 
+									<input id="cc-pament" name="cc-payment" type="text"
+									class="form-control" aria-required="true" aria-invalid="false"
+									th:value="${precio}">
+							</div>
+							<div class="form-group">
+								<label for="cc-number" class="control-label mb-1">Numero de la tarjeta</label> 
+								<input class="form-control" th:field="*{numero}"> 
+							</div>
+							<div class="row">
+								<div class="col-6">
+									<div class="form-group">
+										<label for="cc-exp" class="control-label mb-1">Expiración</label>
+										<input class="form-control" th:field="*{expiracion}"> 
+									</div>
+								</div>
+								<div class="col-6">
+									<label for="x_card_code" class="control-label mb-1">Código de Seguridad</label>
+									<div class="input-group">										
+										<input class="form-control" th:field="*{codigo}"> 
+
+									</div>
+								</div>
+							</div>
+							<div>
+								<button id="payment-button" type="submit"
+									class="btn btn-lg btn-info btn-block">
+									<i class="fa fa-lock fa-lg"></i>&nbsp; <span
+										id="payment-button-amount">Comprar</span> <span
+										id="payment-button-sending" style="display: none;"></span>
+								</button>
+
+<!-- 								<a class="btn btn-info btn-block" th:href="@{/comprar2/{carID}/{personID}(carID=${carID},  -->
+<!-- 											 personID=${personid})}"><i class="fa fa-lock fa-lg"></i>&nbsp;Comprar</a> -->
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+	<!-- /page content -->
+
+	<th:block th:include="fragments/header :: footer"></th:block>
+	<th:block th:include="fragments/header :: footerJs"></th:block>
+</body>
+
+</html>

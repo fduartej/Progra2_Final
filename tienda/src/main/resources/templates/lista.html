@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+
+<!-- <script th:src="@{//code.jquery.com/jquery-1.11.1.min.js}"></script> -->
+<script th:src="@{//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js}"></script>
+<script th:src="@{//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js}"></script>
+<link rel="stylesheet" th:href="@{https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css}">
+<link th:href="@{/vendor/bootstrap-4.1/bootstrap.min.css}" rel="stylesheet" media="all">
+
+<link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css}">
+<script th:src="@{//stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js}"></script>
+<!-- <link rel="stylesheet" -->
+<!-- 	th:href="@{https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css}">	 -->
+<!-- <script th:src="@{//code.jquery.com/ui/1.12.1/jquery-ui.js}"></script>	 -->
+<title>Autos Disponibles</title>
+</head>
+
+<body
+	th:style="'background:url(' + @{/imgs/cars1.jpeg} + ');background-size:cover;'">
+
+	<!-- page content -->
+	<br>
+	<div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3">
+					<div class="card">
+						<div class="card-body">Bienvenido <span th:text="${person.nombre}"></span>, a continuación te
+							presentamos la lista de autos que puedes adquirir.</div>
+					</div>
+				</div>
+				<div class="col-lg-9">
+					<div class="card">
+						<div class="card-body">
+							<table id="tabla1" class="display text-center"
+								style="width: 100%;">
+								<thead>
+									<tr>
+										<th>Id</th>
+										<th>Año</th>
+										<th>Marca</th>
+										<th>Modelo</th>
+										<th>Foto</th>
+										<th>Precio</th>
+										<th>Opciones</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="car: ${cars}">
+										<td><span th:text="${car.id}"></span></td>
+										<td><span th:text="${car.anno}"></span></td>
+										<td><span th:text="${car.marca}"></span></td>
+										<td><span th:text="${car.modelo}"></span></td>
+										<td>
+<!--  										<button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal" > -->
+ 											<button type="button" class="btn btn-sm btn-primary" data-toggle="modal" th:attr="data-target='#exampleModal'+${car.id}">
+													  Ver
+											</button>
+													
+													<!-- Modal -->
+<!-- 												<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
+													<div class="modal fade"  th:id="exampleModal+${car.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+													  <div class="modal-dialog" role="document">
+													    <div class="modal-content">
+													      <div class="modal-header">
+													        <h5 class="modal-title" id="exampleModalLabel">¡Compralo ya!</h5>
+													        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													          <span aria-hidden="true">&times;</span>
+													        </button>
+													      </div>
+													      <div class="modal-body">
+													        <img id="image-gallery-image" class="img-responsive" 
+													        th:src="@{${car.foto}}"
+													        height="280" width="430">
+													      </div>
+													      <div class="modal-footer">
+													        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+													      </div>
+													    </div>
+													  </div>
+													</div>
+										</td>
+										<td><span th:text="${car.precio}"></span></td>
+										<td>
+										
+<!-- 										<form th:action="@{/comprar}" method="post"> -->
+<!-- 									      <input type="text" th:value="${car.id}" name="id"/> -->
+<!-- 									       <input type="text" th:value="${person.id}" name="id"/> -->
+<!-- 									      <input type="text" th:value="${bar.status}" name="status"/> -->
+
+											<a th:href="@{/comprar/{carID}/{personID}(carID=${car.id}, 
+																					  personID=${person.id})}">Comprar</a>
+	
+<!-- 									      <button type="submit" class="btn btn-success btn-sm"> -->
+<!-- 												<i class="fa fa-shopping-cart"></i>&nbsp; Comprar -->
+<!-- 											</button> -->
+<!-- 										</form> -->
+											
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							
+						</div>
+					</div><br><br><br>
+					<!-- END DATA TABLE-->
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	<!-- /page content -->
+
+<!-- 	<form th:action="@{/foo}" method="post"> -->
+<!--       <input type="text" th:value="${foo.name}" name="name"/> -->
+<!--       <input type="text" th:value="${bar.status}" name="status"/> -->
+<!--       <button type="submit">Go</button> -->
+<!-- 	</form> -->
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+// 			$('#tabla1').dataTable();
+			 $('#tabla1').dataTable( {
+		            "language": {
+		                "sProcessing":     "Procesando...",
+		                "sLengthMenu":     "Mostrar _MENU_ registros",
+		                "sZeroRecords":    "No se encontraron resultados",
+		                "sEmptyTable":     "Ningún dato disponible en esta tabla",
+		                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+		                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+		                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+		                "sInfoPostFix":    "",
+		                "sSearch":         "Buscar:",
+		                "sUrl":            "",
+		                "sInfoThousands":  ",",
+		                "sLoadingRecords": "Cargando...",
+		                "oPaginate": {
+		                    "sFirst":    "Primero",
+		                    "sLast":     "Último",
+		                    "sNext":     "Siguiente",
+		                    "sPrevious": "Anterior"
+		                },
+		                "oAria": {
+		                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+		                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+		                }
+		            }
+		        } );
+			 
+			 
+			 
+		});
+</script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header::head">
+<meta charset="UTF-8">
+</head>
+
+<body class="animsition"
+	th:style="'background:url(' + @{/imgs/cars.jpeg} + ');background-size:cover;'">
+	<div class="container">
+		<!-- page content -->
+		<br>
+		<div class="form-group" align="center">
+
+			<div class="col-md-8 col-sm-10 col-xs-12">
+				<div class="row">
+					<div class="col-md-12">
+					<form role="form" th:action="@{/lista_autos}"
+							th:object="${person}" method="post">
+						<input th:type="hidden" th:field="*{id}" />
+						<button type="submit" class="btn btn-success"> Mostrar Autos Disponibles</button>
+					</form>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- /page content -->
+
+	<th:block th:include="fragments/header :: footer"></th:block>
+	<th:block th:include="fragments/header :: footerJs"></th:block>
+
+	<script>
+	
+	</script>
+</body>
+
+</html>

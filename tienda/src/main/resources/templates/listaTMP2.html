@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header::head">
+<meta charset="UTF-8">
+<title>Autos Disponibles</title>
+</head>
+
+<body class="animsition"
+	th:style="'background:url(' + @{/imgs/resultado.jpg} + ');background-size:cover;'">
+	<div class="container">
+
+		<!-- page content -->
+		<br>
+		
+		<div class="form-group" align="center">
+
+			<div class="col-md-8 col-sm-10 col-xs-12">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="col-md-8">
+                                	<br><br>
+                                <div class="card">
+                                    <img class="card-img-top" th:src="@{/imgs/keys.jpeg}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-3">Tu selección se ha realizado</h4>
+                                        <p class="card-text">Te contactaremos para finalizar la compra y realizar el pago.<br>
+                                        ¡Si tomas no manejes!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+	<!-- /page content -->
+
+	<th:block th:include="fragments/header :: footer"></th:block>
+	<th:block th:include="fragments/header :: footerJs"></th:block>
+</body>
+
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header::head">
+<meta charset="UTF-8">
+</head>
+
+<body class="animsition" th:style="'background:url(' + @{/imgs/cuentas.jpeg} + ');background-size:cover;'">
+	<div class="container">
+
+		<!-- page content -->
+		<br>
+		<div class="form-group" align="center">
+			<form role="form" th:action="@{/calcular}" th:object="${person}"
+				method="post"> 
+
+				<div class="col-lg-6">
+					<div th:if="${#fields.hasErrors('dni')}" th:erros="*{dni}">
+						<div class="alert alert-danger" id="alerta1">
+							<button type="button" class="close" data-dismiss="alert">x</button>
+							<strong>Error! </strong> El DNI debe contener 8 dígitos.
+						</div>
+					</div>
+					<div th:if="${#fields.hasErrors('relacionLaboral')}"
+						th:erros="*{relacionLaboral}">
+						<div class="alert alert-danger" id="alerta1">
+							<button type="button" class="close" data-dismiss="alert">x</button>
+							<strong>Error! </strong> Seleccionar la Relacion Laboral
+							(Dependiente/Independiente).
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-6 col-sm-6 col-xs-12">
+					<div class="card">
+						<div class="card-header">Formulario</div>
+						<div class="card-body">
+
+							<div class="card-title">
+								<h3 class="text-center title-2"><h2>Renta de 5ta</h2></h3>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="input-group col-lg-12">
+									<div class="input-group-addon">
+										<i class="fa fa-user"></i>
+									</div>
+									<input class="form-control" type="text" th:field="*{nombre}"
+										required="required" placeholder="Nombres y Apellidos">
+								</div>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="col-sm-4">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-hashtag"></i>
+										</div>
+										<input class="form-control" type="number" th:field="*{dni}"
+											required="required" placeholder="DNI">
+									</div>
+								</div>
+								<div class="col-sm-8">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-envelope"></i>
+										</div>
+										<input class="form-control" type="email" th:field="*{correo}"
+											required="required" placeholder="Email">
+									</div>
+								</div>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="form-group">
+									<div class="col-lg-7">
+										<label class=" form-control-label">Caracter de
+											Relación Laboral</label>
+									</div>
+								</div>
+								<div class="btn-group" data-toggle="buttons">
+									<label class="btn btn-default"> <input type="radio"
+										th:field="*{relacionLaboral}" th:value="Dependiente"
+										name="optradio"> Dependiente
+									</label> <label class="btn btn-default"> <input type="radio"
+										th:field="*{relacionLaboral}" th:value="Independiente"
+										name="optradio"> Independiente
+									</label>
+								</div>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="col-sm-5">
+									<label>Ingresos brutos anuales</label> <input
+										class="form-control" type="text" th:field="*{ingresoAnual}">
+								</div>
+								<div class="col-sm-7">
+									<label>Unidad impositiva Tributaria (UIT)</label> <input
+										class="form-control" type="text" th:field="*{uit}">
+								</div>
+							</div>
+							<hr>
+							<div>
+								<div class="card-footer">
+									<button type="submit" class="btn btn-primary btn-sm">
+										<i class="fa fa-dot-circle-o"></i> Calcular
+									</button>
+									<button type="reset" class="btn btn-danger btn-sm">
+										<i class="fa fa-ban" id="limpiar"></i> Limpiar
+									</button>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</form>
+		</div>
+		<!-- /page content -->
+
+		<th:block th:include="fragments/header :: footer"></th:block>
+		<th:block th:include="fragments/header :: footerJs"></th:block>
+	</div>
+
+	<script>
+		$(document).ready(function() {
+			console.log("ready!");
+
+			$(".alert-danger").fadeTo(4000, 500).slideUp(500, function() {
+				$(".alert-danger").slideUp(500);
+			});
+		});
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header::head">
+<meta charset="UTF-8">
+</head>
+
+<body class="animsition"
+	th:style="'background:url(' + @{/imgs/resultado.jpg} + ');background-size:cover;'">
+	<div class="container">
+
+		<!-- page content -->
+		<br>
+		<div class="form-group" align="center">
+
+			<div class="col-md-6 col-sm-6 col-xs-12">
+				<div class="col-lg-8">
+					<div class="au-card au-card--bg-blue au-card-top-countries m-b-30">
+						<div class="au-card-inner">
+							<div class="table-responsive">
+								<table class="table table-top-countries">
+									<tbody>
+										<tr>
+											<h1 style="color: white;">Resultados</h1>
+										</tr>
+										<tr>
+											<td><strong>DNI</strong></td>
+											<td class="text-right">1</td>
+										</tr>
+										<tr>
+											<td><strong>DNI</strong></td>
+											<td class="text-right">1</td>
+										</tr>
+										<tr>
+											<td><strong>DNI</strong></td>
+											<td class="text-right">1</td>
+										</tr>
+										<tr>
+											<td><strong>DNI</strong></td>
+											<td class="text-right">1</td>
+										</tr>
+									</tbody>
+								</table>
+								<hr>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="card-header">
+						<strong>Informacion Adicional</strong> 
+					</div>
+					<div class="card-body">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /page content -->
+
+	<th:block th:include="fragments/header :: footer"></th:block>
+	<th:block th:include="fragments/header :: footerJs"></th:block>
+
+	<script>
+		$(document).ready(function() {
+			console.log("ready!");
+
+			$(".alert-danger").fadeTo(4000, 500).slideUp(500, function() {
+				$(".alert-danger").slideUp(500);
+			});
+		});
+	</script>
+</body>
+
+</html>

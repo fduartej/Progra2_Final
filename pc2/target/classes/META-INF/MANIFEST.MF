@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: pc2
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Clase
+Implementation-Vendor-Id: edu.usmp
+Build-Jdk: 1.8.0_131
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/pc2
+Created-By: Maven Integration for Eclipse
+
